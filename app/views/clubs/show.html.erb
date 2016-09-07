@@ -1,0 +1,40 @@
+<h1><%=@club.name %></h1>
+
+<p>There are <%=@club.users.length%> members in your book club!</p>
+<p>This club started on <%=club.start_date%></p>
+<p><%club.start_date%></p>
+
+<%= button_to "Invite Friends", root_path %>
+
+
+<div class="message_section">
+
+  <h2>Messages:</h2>
+    <div class="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
+      scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">
+      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
+      <p>alsnv;aina;ibabv;ai</p>
+      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
+      <p>alsnv;aina;ibabv;ai</p>
+      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
+      <p>alsnv;aina;ibabv;ai</p>
+      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
+      <p>alsnv;aina;ibabv;ai</p>
+   </div>
+
+    <div class="new_message" >
+      <h2>New Message</h2>
+      <%= form_tag '/clubs' do %>
+      <%= text_area_tag "message" %>
+      <%=submit_tag "Post Message"%>
+      <% end %>
+    </div>
+
+</div>
+
+
+
+<h2>Members:</h2>
+<% @club.users.each do |user| %>
+  <font size = "5"> <%=link_to "#{user.name}", user_path(user)%></font><br>
+<% end %>
