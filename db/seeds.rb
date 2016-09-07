@@ -5,11 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-5.times do 
+5.times do
+  ##Book Seeds
   title = Faker::Book.title
+  description= Faker::Hipster.paragraph(2, true)
+  genre= Faker::Book.genre
+  ##Club Seeds
   club = Club.create(name: "#{title} Book Club")
-  club.book = Book.create(title: title, author: Faker::Book.author)
+  club.book = Book.create(title: title, author: Faker::Book.author, description: description, genre: genre)
+  ##User Seeds
   user = User.create(name: Faker::Name.name, age: Random.rand(18...99), favorite_books: [])
   user.clubs << club
+  ##Messge Seed
   club.messages << Message.create(content: Faker::ChuckNorris.fact)
 end
