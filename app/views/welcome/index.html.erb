@@ -1,2 +1,23 @@
-<h1>Welcome#index</h1>
+<h1>Welcome to Book Connect</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
+
+<h3>Sign Up</h3>
+
+<%= render partial: 'users/form', locals: {user: @user}  %>
+
+<h3>Upcoming Book Clubs</h3>
+
+<div id = "upcoming">
+  <% @upcoming.each do |club| %>
+    <%= link_to club.name, book_path(club.book) %>
+    <% end %>
+
+</div>
+
+<h3>Open Book Clubs</h3>
+
+<div id = "open">
+  <% @open.each do |club| %>
+    <%= link_to club.name, book_path(club.book) %>
+    <% end %>
+</div>
