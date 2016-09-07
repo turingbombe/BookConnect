@@ -1,0 +1,20 @@
+<h1><%=@book.title %></h1>
+<h3><%=@book.author %> <span><h4><%=@book.genre%></h4></span></h3>
+
+<p>
+  <%=@book.description %>
+</p>
+<br>
+  <h3>Open Clubs with this Book:</h3>
+    <%-# if club.status=="open"-%>
+  <% @book.clubs.each do |club| %>
+    <font size = "5"><%=link_to "#{club.name}", club_path(club)%></font>
+    <div class display= "inline">
+      <%=button_to "Join Club", club_path(club)%>
+      <%-#end-%>
+    </div>
+  <%end%>
+  <br>
+
+  <h3>Create a Club for this Book</h3>
+  <%=button_to "Create Club", new_club_path%>
