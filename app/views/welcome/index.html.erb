@@ -1,9 +1,13 @@
 <h1>Welcome to Book Connect</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
 
+<% if !logged_in? %>
 <h3>Sign Up</h3>
 
 <%= render partial: 'users/form', locals: {user: @user}  %>
+
+<% end %>
+
 
 <h3>Upcoming Book Clubs</h3>
 
