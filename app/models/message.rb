@@ -1,3 +1,3 @@
 class Message < ApplicationRecord
-  belongs_to :club
+  belongs_to :club, optional: true
 end
