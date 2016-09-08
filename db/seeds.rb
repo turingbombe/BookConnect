@@ -8,7 +8,7 @@
 
 status_array = ["open", "closed", "upcoming", "archived"]
 
-5.times do
+20.times do
   ##Book Seeds
   start = Faker::Date.between(Date.today, 1.year.from_now)
   finish = start+30
@@ -19,7 +19,7 @@ status_array = ["open", "closed", "upcoming", "archived"]
   club = Club.create(name: "#{title} Book Club", status: status_array.sample, start_date: start, end_date: finish)
   club.book = Book.create(title: title, author: Faker::Book.author, description: description, genre: genre)
   ##User Seeds
-  user = User.create(name: Faker::Name.name, age: Random.rand(18...99), favorite_books: [], password: "123")
+  user = User.create(name: Faker::Name.name, age: Random.rand(18...99), favorite_books: Faker::Book.title, password: "123")
   user.clubs << club
   ##Messge Seed
   club.messages << Message.create(content: Faker::ChuckNorris.fact)

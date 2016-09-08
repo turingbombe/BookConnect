@@ -22,6 +22,15 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def destroy
+      if @user.id == session[:user_id]
+          @user.destroy
+          redirect_to root_path
+      else
+          redirect_to root_path
+      end
+  end
+
 private
 
 def user_params

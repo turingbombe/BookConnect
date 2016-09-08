@@ -11,10 +11,10 @@ class Club < ApplicationRecord
   # 'archived' = Book club has ended
   def self.upcoming
     self.all.where(status: 'upcoming')
-  end  
+  end
 
   def self.open
     self.all.where(status: 'open')
-  end 
+  end
 
 end
