@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :books
-  resources :users
+  resources :users, except: [:new, :destroy]
   resources :clubs
   resources :messages
-  resources :sessions
+  resources :sessions, except: [:new, :destroy]
 
   root to: 'welcome#index'
+
+  get '/signout',to: 'sessions#destroy', as: 'signout'
+  get '/signin', to: 'sessions#new', as: 'signin'
 end
