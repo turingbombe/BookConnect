@@ -1,0 +1,27 @@
+<h1>Your Profile</h1>
+
+<div>
+    Name: <%=@user.name %>
+    Age: <%=@user.age %>
+    Favorite Book: <%=@user.favorite_books%>
+
+</div>
+
+<div>
+<h3>Your Current Clubs</h3>
+    <% @user.current_clubs.each do |clubs| %>
+    <%= link_to clubs.name, club_path(clubs) %>
+    <% end %>
+</div>
+
+<div>
+<h3>Your Past Clubs</h3>
+    <% @user.archived_clubs.each do |clubs| %>
+    <%= link_to clubs.name, club_path(clubs) %>
+    <% end %>
+</div>
+
+
+<% if current_user.id == @user.id%>
+    <h3>Delete Your Account</h3>
+<% end %>

@@ -5,7 +5,19 @@ class Club < ApplicationRecord
   belongs_to :book, optional: true
   accepts_nested_attributes_for :messages
 
-  def duration
-    return self.end_date=self.s
+
+  # Club status:
+  # 'upcoming' = Book club starting in the near future
+  # 'open' = Book club has started but you can still register
+  # 'closed' = Book club is active but you cannot join
+  # 'archived' = Book club has ended
+  def self.upcoming
+    self.all.where(status: 'upcoming')
   end
+
+  def self.open
+    self.all.where(status: 'open')
+  end
+
+
 end
