@@ -2,19 +2,27 @@ class ClubsController < ApplicationController
 
   def show
     @club=Club.find(params[:id])
-    @club.messages.build
-    respond_to do |format|
-        format.html
-        format.json { render json: @message.to_json }
-      end
    end
 
   def create
-
   end
 
+  def edit
+  end
+
+  def update
+    @club = Club.find(params[:id])
+    ##want to refactor this:
+    @club.messages<<Message.create(content: params[:club][:message][:content])
+    redirect_to club_path(@club)
+  end
+
+
+
+private
   def club_params
-    params.require(:club)
+    params.require(:club).permit(:name, :message=> [:content])
   end
+
 
 end

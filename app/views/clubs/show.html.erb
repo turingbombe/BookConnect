@@ -6,34 +6,17 @@
 
 <%= button_to "Invite Friends", root_path %>
 
-
 <div class="message_section">
+<h2>Messages:</h2>
+  <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
+    scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">
+    <% @club.messages.each do |message| %>
+      <p><%= message.content%></p>
+      <p><%= message.created_at%></p>
+      <% end %>
+ </div>
 
-  <h2>Messages:</h2>
-    <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
-      scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">
-      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
-      <p>alsnv;aina;ibabv;ai</p>
-      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
-      <p>alsnv;aina;ibabv;ai</p>
-      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
-      <p>alsnv;aina;ibabv;ai</p>
-      <p>blaaaaballadsflkja;glianv;lisnva;ivn</p>
-      <p>alsnv;aina;ibabv;ai</p>
-   </div>
-
-  <div class="new_message" >
-    <h2>New Message</h2>
-      <%= form_for @club, remote:true,'data-type'=> 'json', method: :post, id: 'new_message_form' do |f|%>
-      <%=f.fields_for :messages do |message_form| %>
-        <%= message_form.text_area :content %>
-      <%end%>
-        <%=f.submit "Post Message" %>
-      <%end%>
-  </div>
-
-</div>
-
+<%= render partial: 'messages/form', method: :post, locals: {message: @club.messages.build} %>
 
 
 <h2>Members:</h2>
