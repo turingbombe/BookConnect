@@ -12,6 +12,7 @@ end
 
 def create
   @message = @club.messages.build(message_params)
+  current_user.messages<<@message
   byebug
   if @message.save
       redirect_to club_path(@message.club_id)

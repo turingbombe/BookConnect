@@ -12,8 +12,12 @@ class ClubsController < ApplicationController
 
   def update
     @club = Club.find(params[:id])
+    @message= Message.create(content: params[:club][:message][:content])
     ##want to refactor this:
-    @club.messages<<Message.create(content: params[:club][:message][:content])
+    @club.messages<<@message
+    user=current_user
+    user.messages<<@message
+    byebug
     redirect_to club_path(@club)
   end
 
