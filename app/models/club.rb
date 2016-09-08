@@ -3,6 +3,8 @@ class Club < ApplicationRecord
   has_many :user_clubs
   has_many :users, through: :user_clubs
   belongs_to :book, optional: true
+  accepts_nested_attributes_for :messages
+
 
   # Club status:
   # 'upcoming' = Book club starting in the near future
@@ -16,5 +18,6 @@ class Club < ApplicationRecord
   def self.open
     self.all.where(status: 'open')
   end
+
 
 end
