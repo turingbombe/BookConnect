@@ -1,6 +1,8 @@
 
 
-<% books = GoogleBooks.search('Twilight').first %>
+<% book = Book.new GoogleBooks.search('Twilight').first %>
+
+
 
 <%=books.title %>
 <%books.image_link %>
