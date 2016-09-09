@@ -17,4 +17,4 @@
   <br>
 
   <h3>Create a Club for this Book</h3>
-  <%=button_to "Create Club", new_club_path%>
+  <%=button_to "Create Club", '/clubs/new', params: {book_id: params[:id]}, method: :get%>

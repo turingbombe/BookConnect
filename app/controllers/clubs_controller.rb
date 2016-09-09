@@ -5,7 +5,8 @@ class ClubsController < ApplicationController
    end
 
   def new
-    @club=Club.new
+    @club = Club.new
+    @club.book = Book.find(params[:book_id])
   end
 
   def create
