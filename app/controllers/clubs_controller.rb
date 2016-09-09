@@ -4,6 +4,10 @@ class ClubsController < ApplicationController
     @club=Club.find(params[:id])
    end
 
+  def new
+    @club=Club.new
+  end
+
   def create
   end
 
@@ -17,7 +21,6 @@ class ClubsController < ApplicationController
     @club.messages<<@message
     user=current_user
     user.messages<<@message
-    byebug
     redirect_to club_path(@club)
   end
 
