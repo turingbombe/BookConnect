@@ -1,12 +1,8 @@
 
-<% book = GoogleBooks.search('Twilight').first %>
+<% @books.each do |book| %>
+<h4><%= book.title %></h4>
+<%= image_tag(image_url(book))%>
+<% end %>
 
 
 
-
-
-<h4><%=book.title %></h4>
-
-<img src=<%= book.image_link%> />
-
- <!-- iterate over several books, and move to welcome page -->
