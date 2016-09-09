@@ -20,10 +20,16 @@ class ClubsController < ApplicationController
     @message= Message.create(content: params[:club][:message][:content])
     ##want to refactor this:
     @club.messages<<@message
-    user=current_user
-    user.messages<<@message
+    current_user.messages<<@message
+    @message.user=current_user
+    @message.user_id=current_user.id
+    binding.pry
     redirect_to club_path(@club)
   end
+
+
+
+
 
 
 

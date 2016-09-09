@@ -1,4 +1,4 @@
-require 'googlebooks' 
+require 'googlebooks'
 
 class Club < ApplicationRecord
   has_many :messages
@@ -23,6 +23,10 @@ class Club < ApplicationRecord
   def self.open
     self.all.where(status: 'open')
   end
+
+  # def club_member?
+  #   self.users.include?(current_user)
+  # end
 
 
 end
