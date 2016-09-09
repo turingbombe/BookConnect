@@ -1,6 +1,8 @@
 
 
-<% books = GoogleBooks.search('Twilight').first %>
+<% book = Book.new GoogleBooks.search('Twilight').first %>
+
+
 
 
 <h4><%=books.title %></h4>

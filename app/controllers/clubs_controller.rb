@@ -19,7 +19,6 @@ class ClubsController < ApplicationController
     @message= Message.create(content: params[:club][:message][:content])
     ##want to refactor this:
     @club.messages<<@message
-    byebug
     user=current_user
     user.messages<<@message
     redirect_to club_path(@club)
