@@ -1,4 +1,11 @@
 class Message < ApplicationRecord
+
   belongs_to :club, optional: true
-  has_one :user, through: :club
+  belongs_to :user
+
+
+  def post_time
+    self.created_at.strftime('%b, %I')
+  end
+
 end

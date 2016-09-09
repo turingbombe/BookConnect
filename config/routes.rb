@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+  get '/signup', to: "users#new", as: "signup"
   get '/signout',to: 'sessions#destroy', as: 'signout'
   get '/signin', to: 'sessions#new', as: 'signin'
   get '/users/:id/delete_user', to: 'users#destroy',as: 'delete_user'
+
 end

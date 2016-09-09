@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :user_clubs
   has_many :clubs, through: :user_clubs
-  has_many :messages, through: :clubs
+  has_many :messages
   has_many :books, through: :clubs
 
   def current_clubs
@@ -15,6 +15,9 @@ class User < ApplicationRecord
 
   def archived_clubs
       self.clubs.where(status: "archived")
+  end
+
+  def club_member
   end
 
 end
