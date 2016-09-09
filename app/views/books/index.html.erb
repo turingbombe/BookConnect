@@ -1,12 +1,12 @@
 
 
-<% book = Book.new GoogleBooks.search('Twilight').first %>
+<% book = GoogleBooks.search('Twilight').first %>
 
 
 
 
-<h4><%=books.title %></h4>
+<h4><%=book.title %></h4>
 
-<img src=<%= books.image_link%> />
+<img src=<%= book.image_link%> />
 
  <!-- iterate over several books, and move to welcome page -->
