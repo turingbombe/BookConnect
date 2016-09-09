@@ -3,6 +3,8 @@ require 'googlebooks'
 class Book < ApplicationRecord
   has_many :clubs, through: :book_clubs
 
+
+
   def book_details
   books ||= GoogleBooks.search(self.title)
   @book = books.first
@@ -15,5 +17,6 @@ class Book < ApplicationRecord
   def cover_image
     book_details.image_link(:zoom => 2)
   end
+
 
 end

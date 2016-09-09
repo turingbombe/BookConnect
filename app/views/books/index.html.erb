@@ -4,10 +4,9 @@
 
 
 
-<%=books.title %>
-<%books.image_link %>
-<img src="https://www.googleapis.com/books/v1/volumes?q=isbn:0771595158" alt="please work" />
 
-<%=image_tag("https://www.googleapis.com/books/v1/volumes?q=isbn:0771595158") %>
+<h4><%=books.title %></h4>
 
-<%=GoogleBooks.search('isbn:9781443411080').first.image_link  %>
+<img src=<%= books.image_link%> />
+
+ <!-- iterate over several books, and move to welcome page -->
