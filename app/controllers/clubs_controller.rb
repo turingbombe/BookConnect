@@ -4,6 +4,11 @@ class ClubsController < ApplicationController
     @club=Club.find(params[:id])
    end
 
+  def new
+    @club = Club.new
+    @club.book = Book.find(params[:book_id])
+  end
+
   def create
   end
 
@@ -15,11 +20,16 @@ class ClubsController < ApplicationController
     @message= Message.create(content: params[:club][:message][:content])
     ##want to refactor this:
     @club.messages<<@message
-    user=current_user
-    user.messages<<@message
-    byebug
+    current_user.messages<<@message
+    @message.user=current_user
+    @message.user_id=current_user.id
+    binding.pry
     redirect_to club_path(@club)
   end
+
+
+
+
 
 
 

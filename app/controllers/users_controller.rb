@@ -11,7 +11,6 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     @user = User.new
   end
 
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -23,24 +22,35 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def edit
+  end
+
+  def update
+      if @user.update(user_params)
+          redirect_to user_path(@user)
+      else
+          render 'edit'
+      end
+  end
+
   def destroy
       if @user.id == session[:user_id]
           @user.destroy
-          redirect_to root_path
+         # binding.pry
+          redirect_to signout_path
       else
           redirect_to root_path
       end
   end
 
-private
+  private
 
-def user_params
-  params.require(:user).permit(:name, :age, :favorite_books, :password)
-end
+    def user_params
+      params.require(:user).permit(:name, :age, :favorite_books, :password)
+    end
 
-def set_user
-  @user = User.find(params[:id])
-end
-
+    def set_user
+      @user = User.find(params[:id])
+    end
 
 end

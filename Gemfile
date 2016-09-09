@@ -29,6 +29,8 @@ gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'pry-rails'
+
+gem 'googlebooks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

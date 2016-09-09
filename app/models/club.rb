@@ -1,8 +1,13 @@
+require 'googlebooks'
+
 class Club < ApplicationRecord
   has_many :messages
   has_many :user_clubs
   has_many :users, through: :user_clubs
   belongs_to :book, optional: true
+  # has_many :book_clubs
+  # has_many :books, through: :book_clubs
+
   accepts_nested_attributes_for :messages
 
 
@@ -18,6 +23,10 @@ class Club < ApplicationRecord
   def self.open
     self.all.where(status: 'open')
   end
+
+  # def club_member?
+  #   self.users.include?(current_user)
+  # end
 
 
 end
