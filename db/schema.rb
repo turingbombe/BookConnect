@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20160909133947) do
     t.index ["book_id"], name: "index_clubs_on_book_id", using: :btree
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string   "content"
     t.integer  "club_id"
@@ -60,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160909133947) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "email"
   end
 
   add_foreign_key "clubs", "books"
