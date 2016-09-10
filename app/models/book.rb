@@ -16,5 +16,10 @@ class Book < ApplicationRecord
     book_details.image_link(:zoom => 2)
   end
 
+  def self.search(search)
+    if search
+      Book.where("LOWER(title) LIKE ?", "%#{search.downcase}%")
+    end
+  end
 
 end

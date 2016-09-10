@@ -1,8 +1,14 @@
 
-<% @books.each do |book| %>
-<h4><%= book.title %></h4>
-<%= image_tag(image_url(book))%>
+<div id = "search_output">
+<% if !@books.empty? %>
+  <% @books.each do |book| %>
+    <h4><%= book.title %></h4>
+    by <%= book.author %><br>
+    <%= link_to image_tag(image_url(book)), book_path(book)%>
+  <% end %>
+<% else %>
+  <h4>Sorry, no books could be found by that title.</h4>
+  <p>But you can create a new one. Send us the title and author, and we'll fill in the rest.</p>
+  <%= render partial: 'new', locals: {book: @book} %>
 <% end %>
-
-
-
+</div>
