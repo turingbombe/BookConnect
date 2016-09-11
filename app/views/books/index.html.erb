@@ -4,11 +4,13 @@
   <% @books.each do |book| %>
     <h4><%= book.title %></h4>
     by <%= book.author %><br>
-    <%= link_to image_tag(image_url(book,2)), book_path(book)%>
+    <%= link_to image_tag(image_url(book,5)), book_path(book)%>
   <% end %>
-<% else %>
-  <h4>Sorry, no books could be found by that title.</h4>
-  <p>But you can create a new one. Send us the title and author, and we'll fill in the rest.</p>
-  <%= render partial: 'new', locals: {book: @book} %>
 <% end %>
+  <% @booksapi.each do |book| %>
+    <h4><%= book.title %></h4>
+    by <%= book.authors %><br>
+    <%= image_tag(image_url(book,5))%>
+    <%=button_to "Create Book", books_path, params: {book_id: book.id}, method: :post%>
+  <% end %>
 </div>
