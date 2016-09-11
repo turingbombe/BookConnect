@@ -15,8 +15,9 @@ book club!</p>
   <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
     scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">
     <% @club.messages.each do |message| %>
-      <p>On <%= message.post_time%>: <%=message.user%> said "<%= message.content%>"</p>
+      <p>On <%= message.post_time%>: <%=message.user.name%> said "<%= message.content%>"</p>
       <% end %>
+    </div>
  </div>
 
 <%= render partial: 'messages/form', method: :post, locals: {message: @club.messages.build} %>
