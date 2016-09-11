@@ -2,6 +2,8 @@ class ClubsController < ApplicationController
 
   def show
     @club=Club.find(params[:id])
+    title= @club.book.title
+    book = GoogleBooks.search(title).first
    end
 
   def new
@@ -27,9 +29,9 @@ class ClubsController < ApplicationController
     redirect_to club_path(@club)
   end
 
-
-
-
+  def club_member?(club)
+    logged_in? && club.users.include?(current_user)
+  end
 
 
 
