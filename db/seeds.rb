@@ -10,14 +10,22 @@ status_array = ["open", "closed", "upcoming", "archived"]
 
 40.times do
   ##Book Seeds
-  start = Faker::Date.between(Date.today, 1.year.from_now)
+  start = Faker::Date.between(30.days.ago, 30.days.from_now)
   finish = start+30
-  title = Faker::Book.title
-  description= Faker::Hipster.paragraph(2, true)
-  genre= Faker::Book.genre
+  test = GoogleBooks.search(Faker::Book.title).first
+  @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
   ##Club Seeds
-  club = Club.create(name: "#{title} Book Club", status: status_array.sample, start_date: start, end_date: finish)
-  club.book = Book.create(title: title, author: Faker::Book.author, description: description, genre: genre)
+  now = Date.today
+  if finish.past?
+    club = Club.create(name: "#{@book.title} Book Club", status: "archived", start_date: start, end_date: finish)
+  elsif start >= now
+    club = Club.create(name: "#{@book.title} Book Club", status: "upcoming", start_date: start, end_date: finish)
+  elsif (now - start) > 10
+    club = Club.create(name: "#{@book.title} Book Club", status: "closed", start_date: start, end_date: finish)
+  elsif start <= now
+    club = Club.create(name: "#{@book.title} Book Club", status: "open", start_date: start, end_date: finish)    
+  end
+  club.book = @book
   ##User Seeds
   user = User.create(name: Faker::Name.name, age: Random.rand(18...99), favorite_books: Faker::Book.title, password: "123")
   user.clubs << club
