@@ -3,8 +3,8 @@
   <%= f.label :name  %>
   <%= f.text_field :name%>
   <%= f.label :start_date %>
-  <%= f.text_field :start_date  %>
-  <%= f.label :end_date %>  
-  <%= f.text_field :end_date  %>
+  <%= f.text_field :start_date, :value => @club.start_date.strftime("%d-%m-%Y") %>
+  <%= f.label :end_date %>
+  <%= f.text_field :end_date, :value => @club.end_date.strftime("%d-%m-%Y")  %>
   <%= f.submit  %>
 <% end %>

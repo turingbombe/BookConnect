@@ -13,23 +13,24 @@ class BooksController < ApplicationController
   end
 
   def new
-    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable. 
-  end 
+    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable.
+  end
 
   def create
+
+      test = GoogleBooks.search(@title).first
     @title = params[:book][:title]
     @author = params[:book][:author]
-    test = GoogleBooks.search(@title).first 
-    if test.title == @title && test.authors == @authors 
-    # unable to save book, even with valid title and author. Need to fix this. 
+
+    
+    if test.title == @title && test.authors == @authors
+    # unable to save book, even with valid title and author. Need to fix this.
     @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description)
-      if @book.save
         redirect_to book_path(@book)
       else
-        render 'new' 
+        render 'new'
         "This book title is nonsense, please check the book's title and try again."
       end
-    end
   end
 
   def edit
@@ -43,7 +44,7 @@ class BooksController < ApplicationController
 
 private
   def book_params
-    params.require(:book).permit(:title, :author)
+    params.require(:book).permit(:title, :author, :genre, :description)
   end
 
 end

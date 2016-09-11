@@ -10,6 +10,8 @@ class ClubsController < ApplicationController
   end
 
   def create
+      @club = Club.create(club_params)
+      redirect_to club_path(@club)
   end
 
   def edit
@@ -27,16 +29,9 @@ class ClubsController < ApplicationController
     redirect_to club_path(@club)
   end
 
-
-
-
-
-
-
 private
   def club_params
-    params.require(:club).permit(:name, :message=> [:content])
+    params.require(:club).permit(:name, :start_date, :end_date, :message=> [:content])
   end
-
 
 end
