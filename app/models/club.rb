@@ -24,6 +24,10 @@ class Club < ApplicationRecord
     self.all.where(status: 'open')
   end
 
+  def self.archived
+    self.all.where(status: "archived")
+  end
+
   # def club_member?
   #   self.users.include?(current_user)
   # end

@@ -1,5 +1,11 @@
 class ClubsController < ApplicationController
 
+  def index
+    @open_clubs=Club.open
+    @archived_clubs=Club.archived
+    @upcoming_clubs=Club.upcoming
+  end
+
   def show
     @club=Club.find(params[:id])
     title= @club.book.title
