@@ -12,6 +12,13 @@ class ClubsController < ApplicationController
   end
 
   def create
+    club = Club.new(club_params)
+    if club.save
+      club.users << current_user
+      redirect_to club_path(club)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -20,24 +27,18 @@ class ClubsController < ApplicationController
   def update
     @club = Club.find(params[:id])
     @message= Message.create(content: params[:club][:message][:content])
-    ##want to refactor this:
-    @club.messages<<@message
-    current_user.messages<<@message
-    @message.user=current_user
-    @message.user_id=current_user.id
-    binding.pry
+    @club.messages << @message
+    current_user.messages << @message
     redirect_to club_path(@club)
   end
 
   def club_member?(club)
     logged_in? && club.users.include?(current_user)
   end
-
-
-
+  
 private
   def club_params
-    params.require(:club).permit(:name, :message=> [:content])
+    params.require(:club).permit(:name, :start_date, :end_date, :book_id)
   end
 
 
