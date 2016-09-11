@@ -15,3 +15,12 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('form').submit(function(){
+    $.post('http://example.com/upload', function() {
+      window.location = 'http://google.com';
+    });
+    return false;
+  });
+});
