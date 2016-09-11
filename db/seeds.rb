@@ -8,7 +8,7 @@
 
 status_array = ["open", "closed", "upcoming", "archived"]
 
-20.times do
+40.times do
   ##Book Seeds
   start = Faker::Date.between(Date.today, 1.year.from_now)
   finish = start+30
