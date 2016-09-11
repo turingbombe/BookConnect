@@ -30,7 +30,7 @@ class Club < ApplicationRecord
   def self.status_update
   now = Date.today
     Club.all.each do |club|
-      if club.status == 'closed' && club.end_date >= now
+      if club.status == 'closed' && club.end_date.past?
         club.status = 'archived'
         club.save
       elsif club.status == 'upcoming' && club.start_date >= now
