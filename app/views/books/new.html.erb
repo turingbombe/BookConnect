@@ -1,0 +1,11 @@
+this is the other new page
+<% binding.pry %>
+<%= @booksapi.each do |book| %>
+  <h4><%= book.title %></h4>
+  by <%= book.authors %><br>
+  <%= image_tag(image_url(book,5))%>
+  <%= radio_button_tag(:correct_book) %>
+<% end %>
+
+
+<button type="submit">Submit</>

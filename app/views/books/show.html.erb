@@ -6,7 +6,6 @@
 </p>
 <br>
   <h3>Open Clubs with this Book:</h3>
-  <% binding.pry %>
   <% @book.clubs.each do |club| %>
     <p><%=link_to "#{club.name}", club_path(club)%></p>
     <%=button_to "Join Club", club_path(club)%>

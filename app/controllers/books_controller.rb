@@ -3,33 +3,30 @@ class BooksController < ApplicationController
   def index
   # @books = Book.first(5)
     @books = Book.search(params[:search])
+    @booksapi = GoogleBooks.search(params[:search]).first(3)
   end
 
   def show
     @book=Book.find(params[:id])
     # test = GoogleBooks.search(book.title).first
     # @book = Book.new(title: test.title, author: test.authors, genre: test.categories, description: test.description)
-
   end
 
   def new
-    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable. 
+    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable.     
   end 
 
   def create
-    @title = params[:book][:title]
-    @author = params[:book][:author]
-    test = GoogleBooks.search(@title).first 
-    if test.title == @title && test.authors == @authors 
-    # unable to save book, even with valid title and author. Need to fix this. 
-    @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description)
+    # @title = params[:book][:title]
+    # @author = params[:book][:author]
+    # test = GoogleBooks.search(@title).first
+    test = GoogleBooks.search(params[:book_id]).first
+    @book = Book.new(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
       if @book.save
         redirect_to book_path(@book)
-      else
-        render 'new' 
+      else 
         "This book title is nonsense, please check the book's title and try again."
       end
-    end
   end
 
   def edit
