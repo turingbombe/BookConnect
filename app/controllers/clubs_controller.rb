@@ -14,10 +14,11 @@ class ClubsController < ApplicationController
 
   def new
     @club = Club.new
-    @club.book = Book.find(params[:book_id])
+    # @club.book = Book.find(params[:book_id])
   end
 
   def create
+    binding.pry
     club = Club.new(club_params)
     if club.save
       club.users << current_user
