@@ -1,8 +1,8 @@
 
 
-  <div class="new_message" >
+  <div id="new_message" >
     <h2>New Message</h2>
-      <%= form_for @club do |f|%>
+      <%= form_for @club, remote: true, :html => {:'data-type' => 'json'} do |f|%>
       <%= f.fields_for @club.messages.build do |message_form|%>
       <%= message_form.text_area :content %>
       <%end%>
