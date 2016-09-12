@@ -4,7 +4,7 @@
 book club!</p>
 <p>This club started on <%=@club.start_date%></p>
 
-<%= image_tag(image_url(@club.book, 2))%>
+<img src= <%= @club.book.url %>/>
 
 
 <% if logged_in? && @club.users.include?(current_user)%>
