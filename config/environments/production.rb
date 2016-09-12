@@ -86,9 +86,7 @@ Rails.application.configure do
 
 
 # SMTP settings for gmail
-    ActionMailer::Base.delivery_method = :smtp
-    ActionMailer::Base.stmp_settings = {
-    # config.action_mailer.smtp_settings = {
+    config.action_mailer.smtp_settings = {
 
      :address              => "smtp.gmail.com",
      :port                 => 587,
