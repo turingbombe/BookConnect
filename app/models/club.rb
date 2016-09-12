@@ -45,6 +45,7 @@ class Club < ApplicationRecord
         club.save
       end
     end
-  end
+    end
+
 
 end
