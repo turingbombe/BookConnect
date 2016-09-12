@@ -46,7 +46,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   private
 
     def user_params
-      params.require(:user).permit(:name, :age, :favorite_books, :password)
+      params.require(:user).permit(:name, :age, :favorite_books, :password, :email)
     end
 
     def set_user

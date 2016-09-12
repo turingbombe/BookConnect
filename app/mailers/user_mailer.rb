@@ -5,4 +5,9 @@ class UserMailer < ApplicationMailer
         @user = user
         mail(to: @user.email, subject: 'Welcome to Book Connect')
     end
+
+    def invitation_email(user)
+        @user = user
+        mail(to: @user.email, subject: 'Join Book Connect')
+    end
 end
