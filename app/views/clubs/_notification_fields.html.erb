@@ -1,0 +1,9 @@
+<div class= "nested_fields">
+  <%= f.fields_for :notifications do |notification| %>
+     <%= notification.label :text %>
+     <%= notification.text_field :notification %>
+
+     <%= notification.label :urgency %>
+     <%= notification.text_field :urgency %>
+   <% end %>
+ </div>

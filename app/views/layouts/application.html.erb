@@ -3,12 +3,11 @@
   <head>
     <title>BookConnect</title>
     <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,7 +20,7 @@
           </button>
           <a class="navbar-brand" href="/">BookConnect</a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -29,6 +28,7 @@
             <li><a href=<%="/users/#{session[:user_id]}" %>>Your Profile</a></li>
           <% end %>
           <li><a href="/clubs">Browse Clubs</a></li>
+
           </ul>
           <!-- Search bar function -->
           <% if logged_in?  %>

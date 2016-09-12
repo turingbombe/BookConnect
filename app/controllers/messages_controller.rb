@@ -11,6 +11,7 @@ def new
 end
 
 def create
+  binding.pry
   @message = @club.messages.build(message_params)
   current_user.messages<<@message
   byebug

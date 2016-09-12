@@ -13,8 +13,8 @@ class BooksController < ApplicationController
   end
 
   def new
-    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable.     
-  end 
+    # rendering a partial _new file through Index. Against convention, and using Class instance in the form, versus instance variable.
+  end
 
   def create
     # @title = params[:book][:title]
@@ -24,7 +24,7 @@ class BooksController < ApplicationController
     @book = Book.new(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
       if @book.save
         redirect_to book_path(@book)
-      else 
+      else
         "This book title is nonsense, please check the book's title and try again."
       end
   end
