@@ -8,6 +8,6 @@ class UserMailer < ApplicationMailer
 
     def invitation_email(user)
         @user = user
-        mail(to: @user.email, subject: 'Join Book Connect')
+        mail(to: :email, subject: 'Join Book Connect')
     end
 end
