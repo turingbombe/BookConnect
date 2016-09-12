@@ -24,6 +24,7 @@ class ClubsController < ApplicationController
   def create
     club = Club.new(club_params)
     if club.save
+      club.status_set
       club.users << current_user
       redirect_to club_path(club)
     else
