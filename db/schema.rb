@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911174902) do
+ActiveRecord::Schema.define(version: 20160911220231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20160911174902) do
     t.index ["club_id"], name: "index_messages_on_club_id", using: :btree
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_notifications_on_club_id", using: :btree
+  end
+
   create_table "user_clubs", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "club_id"
@@ -73,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160911174902) do
 
   add_foreign_key "clubs", "books"
   add_foreign_key "messages", "clubs"
+  add_foreign_key "notifications", "clubs"
   add_foreign_key "user_clubs", "clubs"
   add_foreign_key "user_clubs", "users"
 end
