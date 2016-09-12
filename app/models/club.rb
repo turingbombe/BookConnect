@@ -22,7 +22,7 @@ class Club < ApplicationRecord
   end
 
   def self.open
-    self.all.where(status: 'open')
+    self.all.where(status: 'active')
   end
 
   def self.archived
@@ -38,7 +38,7 @@ class Club < ApplicationRecord
       if club.status == 'closed' && club.end_date.past?
         club.status = 'archived'
         club.save
-      elsif club.status == 'upcoming' && club.start_date >= now
+      elsif club.status == 'upcoming' && club.start_date <= now
         club.status = 'active'
         club.save
       elsif club.status == 'active' && (now - club.start_date) > 10
@@ -51,14 +51,17 @@ class Club < ApplicationRecord
   def status_set
     now = Date.today 
     if self.end_date.past?
-      club.status = 'archived'
-      club.save
-    elsif self.start_date >= now
-      club.status = 'active'
-      club.save
+      self.status = 'archived'
+      self.save
+    elsif self.start_date <= now
+      self.status = 'active'
+      self.save
     elsif (now - self.start_date) > 10
-      club.status = 'closed'
-      club.save
+      self.status = 'closed'
+      self.save
+    elsif (self.start_date) > now
+      self.status = 'upcoming'
+      self.save
     end    
   end
 
