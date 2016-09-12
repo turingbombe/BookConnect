@@ -9,7 +9,7 @@ class ClubsController < ApplicationController
 
   def show
     @club=Club.find(params[:id])
-    if params[:join] == 'yes'
+    if params[:join] == 'yes' && !@club.users.include?(current_user)
       @club.users << current_user
     end
     title= @club.book.title
@@ -24,8 +24,8 @@ class ClubsController < ApplicationController
   def create
     club = Club.new(club_params)
     if club.save
-      club.status_set
       club.users << current_user
+      club.status_set
       redirect_to club_path(club)
     else
       render 'new'

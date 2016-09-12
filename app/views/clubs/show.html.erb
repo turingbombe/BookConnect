@@ -4,7 +4,12 @@
 book club!</p>
 <p>This club started on <%=@club.start_date%></p>
 
-<img src= <%= @club.book.url %>/>
+<div class = "row">
+  <div class="panel panel-default col-md-3 col-md-offset-2" >
+  <div class="panel-heading"><%= link_to @club.book.title, book_path(@club.book_id) %></div>
+  <div class="panel-body"><img src = <%= @club.book.url %>/></div>
+  </div>
+</div>
 
 <% if logged_in? && @club.users.include?(current_user)%>
 <div class="messages">
@@ -25,13 +30,15 @@ book club!</p>
   <font size = "5"> <%=link_to "#{user.name}", user_path(user)%></font><br>
 <% end %>
 
-<h2> Not enough members? Invite a friend!</h2>
-<%= form_tag(invitations_path, method: 'POST') do %>
- <%= hidden_field_tag "invitations[club_id]", @club.id%>
- <%= hidden_field_tag "invitations[user_id]", current_user.id %>
-<%= label_tag :name %>
-<%= text_field_tag "invitations[name]" %>
-<%= label_tag :email %>
-<%= text_field_tag "invitations[email]" %>
-<%= submit_tag "Invite Friends" %>
+<% if logged_in? %>
+  <h2> Not enough members? Invite a friend!</h2>
+  <%= form_tag(invitations_path, method: 'POST') do %>
+   <%= hidden_field_tag "invitations[club_id]", @club.id%>
+   <%= hidden_field_tag "invitations[user_id]", current_user.id %>
+  <%= label_tag :name %>
+  <%= text_field_tag "invitations[name]" %>
+  <%= label_tag :email %>
+  <%= text_field_tag "invitations[email]" %>
+  <%= submit_tag "Invite Friends" %>
+  <% end %>
 <% end %>

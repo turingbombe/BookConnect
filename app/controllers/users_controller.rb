@@ -35,8 +35,8 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def destroy
       if @user.id == session[:user_id]
-          @user.destroy
-         # binding.pry
+          @user.name = "Deleted"
+          @user.save
           redirect_to signout_path
       else
           redirect_to root_path
