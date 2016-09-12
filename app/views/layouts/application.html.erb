@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="vendor/assets/stylesheets/bootswatch.css"></head>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -24,14 +26,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-          <% if logged_in?  %>
-            <li><a href=<%="/users/#{session[:user_id]}" %>>Your Profile</a></li>
-          <% end %>
+          <% if logged_in?%>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href= <%="/users/#{session[:user_id]}"%>>Your Profile
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%=edit_user_path(current_user)%>">Edit Profile</a></li>
+                  <li id= "delete_button"><a href="<%=delete_user_path(current_user)%>">Delete Profile</a></li>
+                </ul>
+              </li>
+            <% end %>
+
+            <li><a href= <%="/users/#{session[:user_id]}"%> >Your Profile</a></li>
+
           <li><a href="/clubs">Browse Clubs</a></li>
 
           </ul>
           <!-- Search bar function -->
-          <% if logged_in?  %>
+          <% if logged_in? %>
             <%= form_tag(books_path, method: 'get', class: 'navbar-form navbar-left') do %>
               <%= search_field_tag 'search', params[:search], class: 'form-control', placeholder: 'Search for a Book'  %>
               <%= submit_tag "Submit", class: 'btn btn-default', :name => nil %>

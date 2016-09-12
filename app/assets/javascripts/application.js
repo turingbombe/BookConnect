@@ -24,3 +24,30 @@
 //       $("#message_board").append("<p> On " + response.date + ": " + response.user.name + " said \"" + response.content + "\" </p>");
 //   });
 // });
+
+$(document).ready(function() {
+  $("#delete_button").bind("click", confirmDelete);
+});
+
+function confirmDelete(event){
+  if (!confirm("Are you sure you want to delete your profile?")) {
+      event.preventDefault();
+    }
+    return true;
+}
+
+
+
+// function confirmDelete(event){
+//   event.stopPropagation();
+//   if(confirm("Are you sure you want to delete your profile?")) {
+//    this.click;
+//       alert("Ok");
+//   }
+//   else
+//   {
+//       alert("Cancel");
+//   }
+//   event.preventDefault();
+//
+// }
