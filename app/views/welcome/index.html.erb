@@ -29,14 +29,3 @@
     </div>
   <% end %>
 </div> <br>
-
-<% if logged_in? %>
-  <div class= 'clearfix' id = "search">
-    <h3>Search for a book</h3>
-     <%= form_tag books_path, :method => 'get' do %>
-        <%= label_tag "Search for a book by title:" %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", :name => nil %>
-    <% end %>
-  </div>
-<% end %>
