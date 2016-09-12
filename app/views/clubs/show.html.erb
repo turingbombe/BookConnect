@@ -7,9 +7,7 @@ book club!</p>
 <%= image_tag(image_url(@club.book, 2))%>
 
 
-<%= button_to "Invite Friends", root_path %>
-
-<% if club_member?(@club)%>
+<% if logged_in? && @club.users.include?(current_user)%>
 <div class="message_section">
 <h2>Messages:</h2>
   <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
@@ -26,4 +24,14 @@ book club!</p>
 <h2>Members:</h2>
 <% @club.users.each do |user| %>
   <font size = "5"> <%=link_to "#{user.name}", user_path(user)%></font><br>
+<% end %>
+
+<h2> Not enough members? Invite a friend!</h2>
+<%= form_tag do %>
+ <%= hidden_field_tag :club_id %>
+<%= label_tag :name %>
+<%= text_field_tag :name %>
+<%= label_tag :email %>
+<%= text_field_tag :email %>
+<%= button_to "Invite Friends", root_path %>
 <% end %>

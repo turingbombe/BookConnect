@@ -1,4 +1,10 @@
 
+
+$(function emailFriends(email)){
+    $('button#invite_friends').on('click', function(){
+        UserMailer.invitation_email(email).deliver_now
+    })
+}
 // $(function(){
 //   postNewMessage();
 //
