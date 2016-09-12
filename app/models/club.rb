@@ -24,9 +24,27 @@ class Club < ApplicationRecord
     self.all.where(status: 'open')
   end
 
+  def self.archived
+    self.all.where(status: "archived")
+  end
+
   # def club_member?
   #   self.users.include?(current_user)
   # end
-
+  def self.status_update
+  now = Date.today
+    Club.all.each do |club|
+      if club.status == 'closed' && club.end_date.past?
+        club.status = 'archived'
+        club.save
+      elsif club.status == 'upcoming' && club.start_date >= now
+        club.status = 'active'
+        club.save
+      elsif club.status == 'active' && (now - club.start_date) > 10
+        club.status = 'closed'
+        club.save
+      end
+    end
+  end
 
 end

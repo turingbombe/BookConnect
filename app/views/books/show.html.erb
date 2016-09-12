@@ -6,13 +6,9 @@
 </p>
 <br>
   <h3>Open Clubs with this Book:</h3>
-    <%-# if club.status=="open"-%>
   <% @book.clubs.each do |club| %>
-    <font size = "5"><%=link_to "#{club.name}", club_path(club)%></font>
-    <div class display= "inline">
-      <%=button_to "Join Club", club_path(club)%>
-      <%-#end-%>
-    </div>
+    <p><%=link_to "#{club.name}", club_path(club)%></p>
+    <%=button_to "Join Club", club_path(club)%>
   <%end%>
   <br>
 

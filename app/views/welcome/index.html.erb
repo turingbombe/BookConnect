@@ -1,4 +1,5 @@
-<h1>Welcome to Book Connect</h1>
+<h1>Welcome to Book Connect!</h1>
+<h5>A place to connect with book lovers everywhere.</h5>
 
 <% if !logged_in? %>
 <h3>Sign Up</h3>
@@ -8,17 +9,34 @@
 
 <h3>Upcoming Book Clubs</h3>
 
-<div id = "upcoming">
+<div id = "upcoming" class = "row">
   <% @upcoming.each do |club| %>
-    <%= link_to club.name, book_path(club.book) %>
-    <% end %>
+    <div class= 'col-lg-3'>
+      <img src= <%= club.book.url %> alt=<%= club.book.title %> class='center-block'>
+     <p class= 'text-center'> <%= link_to club.name, book_path(club.book) %> </p>
+    </div>
+  <% end %>
 
 </div>
 
 <h3>Open Book Clubs</h3>
 
-<div id = "open">
+<div class = 'row' id = "open">
   <% @open.each do |club| %>
-    <%= link_to club.name, book_path(club.book) %>
+    <div class= 'col-lg-3'>
+      <img src= <%= club.book.url %> alt=<%= club.book.title %> class='center-block'>
+      <p class= 'text-center'> <%= link_to club.name, book_path(club.book) %> </p>
+    </div>
+  <% end %>
+</div> <br>
+
+<% if logged_in? %>
+  <div class= 'clearfix' id = "search">
+    <h3>Search for a book</h3>
+     <%= form_tag books_path, :method => 'get' do %>
+        <%= label_tag "Search for a book by title:" %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
     <% end %>
-</div>
+  </div>
+<% end %>

@@ -17,7 +17,6 @@ class User < ApplicationRecord
       self.clubs.where(status: "archived")
   end
 
-  def club_member
-  end
+
 
 end

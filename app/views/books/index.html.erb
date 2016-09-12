@@ -1,8 +1,16 @@
 
-<% @books.each do |book| %>
-<h4><%= book.title %></h4>
-<%= image_tag(image_url(book))%>
+<div id = "search_output">
+<% if !@books.empty? %>
+  <% @books.each do |book| %>
+    <h4><%= book.title %></h4>
+    by <%= book.author %><br>
+    <%= link_to image_tag(image_url(book,5)), book_path(book)%>
+  <% end %>
 <% end %>
-
-
-
+  <% @booksapi.each do |book| %>
+    <h4><%= book.title %></h4>
+    by <%= book.authors %><br>
+    <%= image_tag(image_url(book,5))%>
+    <%=button_to "Create Book", books_path, params: {book_id: book.id}, method: :post%>
+  <% end %>
+</div>

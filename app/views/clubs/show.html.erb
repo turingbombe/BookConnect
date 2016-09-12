@@ -1,10 +1,11 @@
 <h1><%=@club.name %></h1>
 
-<p>There are <%=@club.users.length%> members in
-
-  your book club!</p>
+<p>There are <%=@club.users.length%> members in <%=club_member?(@club) ? "your" : "this" %>
+book club!</p>
 <p>This club started on <%=@club.start_date%></p>
-<p><%@club.start_date%></p>
+
+<%= image_tag(image_url(@club.book, 2))%>
+
 
 <% if logged_in? && @club.users.include?(current_user)%>
 <div class="message_section">
@@ -12,8 +13,9 @@
   <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
     scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">
     <% @club.messages.each do |message| %>
-      <p>On <%= message.post_time%>: <%=message.user%> said "<%= message.content%>"</p>
+      <p>On <%= message.post_time%>: <%=message.user.name%> said "<%= message.content%>"</p>
       <% end %>
+    </div>
  </div>
 
 <%= render partial: 'messages/form', method: :post, locals: {message: @club.messages.build} %>

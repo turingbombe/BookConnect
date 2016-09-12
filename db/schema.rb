@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909133947) do
+ActiveRecord::Schema.define(version: 20160911174902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_clubs", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160909133947) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "genre"
+    t.string   "url"
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -33,14 +41,6 @@ ActiveRecord::Schema.define(version: 20160909133947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_clubs_on_book_id", using: :btree
-  end
-
-  create_table "invitations", force: :cascade do |t|
-    t.string   "email"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20160909133947) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
-    t.string   "email"
   end
 
   add_foreign_key "clubs", "books"
