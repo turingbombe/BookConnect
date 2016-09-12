@@ -45,7 +45,21 @@ class Club < ApplicationRecord
         club.save
       end
     end
-    end
+  end
+
+  def status_set
+    now = Date.today 
+    if self.end_date.past?
+      club.status = 'archived'
+      club.save
+    elsif self.start_date >= now
+      club.status = 'active'
+      club.save
+    elsif (now - self.start_date) > 10
+      club.status = 'closed'
+      club.save
+    end    
+  end
 
 
 end
