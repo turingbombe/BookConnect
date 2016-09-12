@@ -7,7 +7,6 @@ class ClubsController < ApplicationController
   end
 
   def show
-    binding.pry
     @club=Club.find(params[:id])
     if params[:join] == 'yes'
       @club.users << current_user
