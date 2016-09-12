@@ -9,6 +9,7 @@ class Club < ApplicationRecord
   # has_many :books, through: :book_clubs
 
   accepts_nested_attributes_for :messages
+  
 
 
   # Club status:
