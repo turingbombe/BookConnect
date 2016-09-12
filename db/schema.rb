@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 20160911174902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "book_clubs", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "club_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
@@ -68,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160911174902) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "email"
   end
 
   add_foreign_key "clubs", "books"
