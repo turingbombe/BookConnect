@@ -7,7 +7,11 @@ class ClubsController < ApplicationController
   end
 
   def show
+    binding.pry
     @club=Club.find(params[:id])
+    if params[:join] == 'yes'
+      @club.users << current_user
+    end
     title= @club.book.title
     book = GoogleBooks.search(title).first
    end
@@ -18,7 +22,6 @@ class ClubsController < ApplicationController
   end
 
   def create
-    binding.pry
     club = Club.new(club_params)
     if club.save
       club.users << current_user

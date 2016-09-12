@@ -8,7 +8,7 @@
   <h3>Open Clubs with this Book:</h3>
   <% @book.clubs.each do |club| %>
     <p><%=link_to "#{club.name}", club_path(club)%></p>
-    <%=button_to "Join Club", club_path(club)%>
+    <%=button_to "Join Club", club_path(club), params:{join: 'yes'}, method: :get%>
   <%end%>
   <br>
 
