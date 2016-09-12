@@ -3,12 +3,11 @@
   <head>
     <title>BookConnect</title>
     <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +29,7 @@
           <% end %>
           <li><a href="/books">Browse Books</a></li>
           <li><a href="/clubs">Browse Clubs</a></li>
-<!-- 
+<!--
           <div class="col-sm-3 col-md-5" class="booksearch">
        <form class="navbar-form" role="search">
           <div class="input-group">

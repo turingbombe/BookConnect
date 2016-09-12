@@ -4,13 +4,14 @@
 book club!</p>
 <p>This club started on <%=@club.start_date%></p>
 
-<%= image_tag(image_url(@club.book, 2))%>
+
+<img src= <%= @club.book.url %>
 
 
 <%= button_to "Invite Friends", root_path %>
 
 <% if club_member?(@club)%>
-<div class="message_section">
+<div class="messages">
 <h2>Messages:</h2>
   <div id="message_board" style ="height:200px;width:300px;overflow:auto;background-color:white;color:black;
     scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:8px solid purple;padding:2%; border-radius: 15px">

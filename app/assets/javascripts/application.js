@@ -14,4 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require_tree ./channels
 //= require_tree .
+
+
+// $(document).ready(function() {
+//   $("#new_message").on("ajax:complete", function(e, request, status) {
+//     var response= request.responseJSON;
+//       $("#message_board").append("<p> On " + response.date + ": " + response.user.name + " said \"" + response.content + "\" </p>");
+//   });
+// });
