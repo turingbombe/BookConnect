@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :clubs
   resources :messages
   resources :sessions, except: [:new, :destroy]
+  resources :invitations
 
   root to: 'welcome#index'
 
