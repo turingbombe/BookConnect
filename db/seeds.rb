@@ -6,14 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-status_array = ["open", "closed", "upcoming", "archived"]
 
 40.times do
   ##Book Seeds
   start = Faker::Date.between(30.days.ago, 30.days.from_now)
   finish = start+30
   test = GoogleBooks.search(Faker::Book.title).first
-  @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
+  if test.title  
+    @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
+  else
+    break
+  end
   ##Club Seeds
   now = Date.today
   if finish.past?

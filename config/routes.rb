@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :messages
   end
   resources :sessions, except: [:new, :destroy]
+  resources :invitations
 
   root to: 'welcome#index'
 

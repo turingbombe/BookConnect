@@ -1,14 +1,17 @@
+<img src= <%= @book.url %>/>
+
 <h1><%=@book.title %></h1>
 <h3><%=@book.author %> <span><h4><%=@book.genre%></h4></span></h3>
+
 
 <p>
   <%=@book.description %>
 </p>
 <br>
-  <h3>Open Clubs with this Book:</h3>
+  <h3>Open & Upcoming Clubs with this Book:</h3>
   <% @book.clubs.each do |club| %>
     <p><%=link_to "#{club.name}", club_path(club)%></p>
-    <%=button_to "Join Club", club_path(club)%>
+    <%=button_to "Join Club", club_path(club), params:{join: 'yes'}, method: :get%>
   <%end%>
   <br>
 
