@@ -1,0 +1,19 @@
+<!-- Count of users grouped by age -->
+<h4>User Demographic Report (Age)</h4>
+<%= column_chart @users.group(:age).count, xtitle: "Age", ytitle: "Number of Users" %>
+
+<!-- Trend line of users signing up -->
+<h4>Trendline of New Users</h4>
+<%= line_chart User.group_by_day(:created_at).count, xtitle: "Date", ytitle: "Number of Users" %>
+
+<!-- Pie chart of popular books -->
+<h4>Most Popular Books</h4>
+<%= pie_chart User.group(:favorite_books).count %>
+
+<!-- Area chart of Club Status -->
+<h4>Club Status Chart</h4>
+<%= area_chart @clubs.group(:status).count, xtitle: "Status", ytitle: "Number of Clubs" %>
+
+<!-- Pie chart of Book Genres -->
+<h4>BookConnect's GenreMania Pie!</h4>
+<%= pie_chart @books.group(:genre).count %>
