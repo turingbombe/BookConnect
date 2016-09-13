@@ -14,7 +14,7 @@
     <p>You are not part of any clubs! Search a book to join a club.</p>
   <% else %>
     <% @user.current_clubs.each do |clubs| %>
-    <%= link_to clubs.name, club_path(clubs) %>
+    <h5><%= link_to clubs.name, club_path(clubs) %></h5>
     <% end %>
   <% end %>
 </div>
@@ -31,7 +31,7 @@
 
 <div>
 <% if current_user.id == @user.id%>
-    <%= link_to 'Edit Your Profile', edit_user_path %> | 
+    <%= link_to 'Edit Your Profile', edit_user_path %> |
     <%= link_to 'Delete Your Profile', delete_user_path %>
 <% end %>
 </div>

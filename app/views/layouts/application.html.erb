@@ -31,13 +31,12 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href= <%="/users/#{session[:user_id]}"%>>Your Profile
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><a href="<%=user_path(current_user)%>">Visit Profile</a></li>
                   <li><a href="<%=edit_user_path(current_user)%>">Edit Profile</a></li>
                   <li id= "delete_button"><a href="<%=delete_user_path(current_user)%>">Delete Profile</a></li>
                 </ul>
               </li>
             <% end %>
-
-            <li><a href= <%="/users/#{session[:user_id]}"%> >Your Profile</a></li>
 
           <li><a href="/clubs">Browse Clubs</a></li>
 

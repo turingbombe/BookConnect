@@ -32,6 +32,11 @@ class ClubsController < ApplicationController
     end
   end
 
+  def leave_club
+    @club=Club.find(params[:id])
+    @club.users(pop(current_user))
+  end
+
   def edit
   end
 

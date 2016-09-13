@@ -12,8 +12,8 @@
   start = Faker::Date.between(30.days.ago, 30.days.from_now)
   finish = start+30
   test = GoogleBooks.search(Faker::Book.title).first
-  if test.title  
-    @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
+  if test.title
+    @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link(:zoom => 2))
   else
     break
   end
@@ -26,7 +26,7 @@
   elsif (now - start) > 10
     club = Club.create(name: "#{@book.title} Book Club", status: "closed", start_date: start, end_date: finish)
   elsif start <= now
-    club = Club.create(name: "#{@book.title} Book Club", status: "open", start_date: start, end_date: finish)    
+    club = Club.create(name: "#{@book.title} Book Club", status: "open", start_date: start, end_date: finish)
   end
   club.book = @book
   ##User Seeds
