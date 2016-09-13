@@ -14,17 +14,10 @@
  *= require_self
  */
 
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "bootswatch/paper/bootswatch";
 
- body { padding-top: 60px; }
 
- <div id="upcoming">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-block">
-    <h4 class="card-title">Card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-    <a href="www.google.com" class="btn btn-primary">www.google.com</a>
-  </div>
-</div>
+ body { padding-top: 20px; }
