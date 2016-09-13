@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @users = User.all
+    @clubs = Club.all
+    @books = Book.all
   end
 
   def show
@@ -35,12 +38,9 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def destroy
       if @user.id == session[:user_id]
-<<<<<<< HEAD
-          @user.destroy
-=======
           @user.name = "Deleted"
           @user.save
->>>>>>> master
+
           redirect_to signout_path
       else
           redirect_to root_path
