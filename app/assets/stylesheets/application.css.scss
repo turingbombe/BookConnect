@@ -16,8 +16,13 @@
 
 
  @import "bootstrap-sprockets";
+ @import "bootswatch/paper/variables";
  @import "bootstrap";
  @import "bootswatch/paper/bootswatch";
 
 
- body { padding-top: 20px; }
+
+ body { padding-top: 60px; }
+
+
+ @navbar-height 100px;

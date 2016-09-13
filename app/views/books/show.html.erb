@@ -10,9 +10,17 @@
   <h3>Open & Upcoming Clubs with this Book:</h3>
   <% @book.clubs.each do |club| %>
     <p><%=link_to "#{club.name}", club_path(club)%></p>
-    <%=button_to "Join Club", club_path(club), params:{join: 'yes'}, method: :get%>
+      <% if logged_in? %>
+        <%=button_to "Join Club", club_path(club), params:{join: 'yes'}, method: :get%>
+      <% else %>
+      <p>Please sign in to join this book club.</p>
+    <%end%>
   <%end%>
   <br>
 
   <h3>Create a Club for this Book</h3>
-  <%=button_to "Create Club", '/clubs/new', params: {book_id: params[:id]}, method: :get%>
+  <% if logged_in? %>
+    <%=button_to "Create Club", '/clubs/new', params: {book_id: params[:id]}, method: :get%>
+  <% else %>
+      <p>Please sign in to create a book club.</p>
+  <%end%>
