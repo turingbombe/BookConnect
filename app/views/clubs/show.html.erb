@@ -18,7 +18,7 @@ book club!</p>
     scrollbar-base-color:gold;font-family:sans-serif;padding:10px; border:2px solid grey;padding:2%; border-radius: 15px">
     <% unless @club.messages.empty? %>
     <% @club.messages.each do |message| %>
-      <p>On <%= message.post_time%>: <%=message.user%> said "<%= message.content%>"</p>
+      <p>On <%= message.post_time%>: <%=message.user.name%> said "<%= message.content%>"</p>
       <% end %>
       <% end %>
     </div>
