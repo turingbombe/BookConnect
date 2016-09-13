@@ -20,7 +20,7 @@
       <img src= "<%= club.book.url %>" class= 'center-block' width="128" height="196">
       <div class="card-block text-center">
         <p class="card-text"><%= club.book.genre %></p>
-        <a class="btn btn-info" <%=link_to "Go to Club", club_path(club) %> </a>
+        <a class="btn btn-info" <%=link_to "Go to Book", book_path(club.book) %> </a>
      </div>
     </div>
   <% end %>
@@ -34,13 +34,13 @@
 <% @open.each do |club| %>
     <div class="card col-lg-3" >
         <div class="card-block text-center">
-          <h4 class="card-title"><%= club.book.title %></h4>
-          <h6 class="card-subtitle text-muted"><%= club.book.author%></h6>
+          <h4 class="card-title"><%= club.name %></h4>
+          <h6 class="card-subtitle text-muted"><%= club.book.title%></h6>
         </div>
       <img src= "<%= club.book.url %>" class= 'center-block' width="128" height="196">
       <div class="card-block text-center">
         <p class="card-text"><%= club.book.genre %></p>
-        <a class="btn btn-info" href= <%=link_to "Go to Club", book_path(club.book) %> </a>
+        <a class="btn btn-info" <%=link_to "Go to Book", book_path(club.book) %> </a>
      </div>
     </div>
   <% end %>
