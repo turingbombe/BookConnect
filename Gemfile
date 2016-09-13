@@ -28,6 +28,7 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 gem 'pry-rails'
 
 gem 'googlebooks'
@@ -37,6 +38,8 @@ gem 'googlebooks'
 gem 'figaro'
 
 gem 'bootswatch-rails'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
