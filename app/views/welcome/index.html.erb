@@ -1,5 +1,6 @@
-<h1>Welcome to Book Connect!</h1>
-<h5>A place to connect with book lovers everywhere.</h5>
+<div class="wide">
+    <div class="logo">Welcome to Book Connect</div>
+</div>
 
 <% if !logged_in? %>
 <h3>Sign Up</h3>
@@ -9,23 +10,38 @@
 
 <h3>Upcoming Book Clubs</h3>
 
-<div id = "upcoming" class = "row">
-  <% @upcoming.each do |club| %>
-    <div class= 'col-lg-3'>
-      <img src= <%= club.book.url %> alt=<%= club.book.title %> class='center-block'>
-     <p class= 'text-center'> <%= link_to club.name, book_path(club.book) %> </p>
+<div id = "upcoming" class = "card-group ">
+<% @upcoming.each do |club| %>
+    <div class="card col-lg-3" >
+        <div class="card-block text-center">
+          <h4 class="card-title"><%= club.book.title %></h4>
+          <h6 class="card-subtitle text-muted"><%= club.book.author%></h6>
+        </div>
+      <img src= "<%= club.book.url %>" class= 'center-block' width="128" height="196">
+      <div class="card-block text-center">
+        <p class="card-text"><%= club.book.genre %></p>
+        <a class="btn btn-info" <%=link_to "Go to Club", club_path(club) %> </a>
+     </div>
     </div>
   <% end %>
-
-</div>
+ </div>
+<br>
+<br>
 
 <h3>Open Book Clubs</h3>
 
-<div class = 'row' id = "open">
-  <% @open.each do |club| %>
-    <div class= 'col-lg-3'>
-      <img src= <%= club.book.url %> alt=<%= club.book.title %> class='center-block'>
-      <p class= 'text-center'> <%= link_to club.name, book_path(club.book) %> </p>
+<div id = "open" class = "card-group row">
+<% @open.each do |club| %>
+    <div class="card col-lg-3" >
+        <div class="card-block text-center">
+          <h4 class="card-title"><%= club.book.title %></h4>
+          <h6 class="card-subtitle text-muted"><%= club.book.author%></h6>
+        </div>
+      <img src= "<%= club.book.url %>" class= 'center-block' width="128" height="196">
+      <div class="card-block text-center">
+        <p class="card-text"><%= club.book.genre %></p>
+        <a class="btn btn-info" href= <%=link_to "Go to Club", book_path(club.book) %> </a>
+     </div>
     </div>
   <% end %>
-</div> <br>
+ </div>
