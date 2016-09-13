@@ -38,6 +38,12 @@ function confirmDelete(event){
     return true;
 }
 
+function clearMessage(){
+  $("#new_message").submit(function(event){
+    $("#new_message").textarea.val("");
+  });
+}
+
 
 
 // function confirmDelete(event){
