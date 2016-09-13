@@ -12,7 +12,7 @@
   start = Faker::Date.between(30.days.ago, 30.days.from_now)
   finish = start+30
   test = GoogleBooks.search(Faker::Book.title).first
-  if test.title  
+  if !test.nil? && !test.title.empty?
     @book = Book.create(title: test.title, author: test.authors, genre: test.categories, description: test.description, url: test.image_link)
   else
     break
@@ -33,5 +33,5 @@
   user = User.create(name: Faker::Name.name, age: Random.rand(18...99), favorite_books: Faker::Book.title, password: "123")
   user.clubs << club
   ##Messge Seed
-  club.messages << Message.create(content: Faker::ChuckNorris.fact)
+  club.messages << Message.create(content: Faker::ChuckNorris.fact, user_id: user.id)
 end
