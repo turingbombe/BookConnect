@@ -2,6 +2,7 @@ class ClubsController < ApplicationController
 
   before_action :set_club, only: [:show, :leave_club, :update]
 
+
   def index
     @open_clubs=Club.open
     @archived_clubs=Club.archived
@@ -53,7 +54,6 @@ class ClubsController < ApplicationController
   end
 
 private
-
   def club_params
     params.require(:club).permit(:name, :start_date, :end_date, :book_id)
   end

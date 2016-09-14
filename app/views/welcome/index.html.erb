@@ -19,9 +19,21 @@
 <br>
 
 <h3>Open Book Clubs</h3>
-
 <div class = "book_card_group" class = "card-group row">
 <% @open.each do |club| %>
-    <%=render partial: 'card_group', locals: {club: club} %>
+<div class="card col-lg-3" >
+    <div class="card-block text-center">
+      <h4 class="card-title"><%= club.book.title %></h4>
+      <h6 class="card-subtitle text-muted"><%= club.book.author%></h6>
+    </div>
+  <img src= "<%= club.book.url %>" class= 'center-block' width="128" height="196">
+  <div class="card-block text-center">
+    <p class="card-text"><%= club.book.genre %></p>
+    <a class="btn btn-info" <%=link_to "Go to Book", book_path(club.book) %> </a>
+ </div>
+</div>
+
+
+    <!-- <%=render partial: 'card_group', locals: {club: club} %> -->
   <% end %>
  </div>

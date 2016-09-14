@@ -34,5 +34,5 @@ book club!</p>
 
 <% if logged_in? %>
   <h2> Not enough members? Invite a friend!</h2>
- <%= render partial: 'invitation_email' locals: {name: name, email: email, club: @club} %>
+ <%= render partial: 'user_mailer/invitation_email', locals: {club: @club} %>
 <% end %>

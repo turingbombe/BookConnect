@@ -30,9 +30,11 @@
 </div>
 
 <div>
-<% if current_user.id == @user.id%>
+  <% if logged_in? %>
+  <% if current_user.id == @user.id%>
     <%= link_to 'Edit Your Profile', edit_user_path %> |
     <%= link_to 'Delete Your Profile', delete_user_path %>
+    <% end %>
 <% end %>
 </div>
 
