@@ -1,5 +1,7 @@
 class ClubsController < ApplicationController
 
+  before_action :set_club, only: [:show, :leave_club, :update]
+
 
   def index
     @open_clubs=Club.open
@@ -8,7 +10,6 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @club=Club.find(params[:id])
     if params[:join] == 'yes' && !@club.users.include?(current_user)
       @club.users << current_user
     end
@@ -33,7 +34,6 @@ class ClubsController < ApplicationController
   end
 
   def leave_club
-    @club=Club.find(params[:id])
     @club.users(pop(current_user))
   end
 
@@ -41,19 +41,12 @@ class ClubsController < ApplicationController
   end
 
   def update
-    @club = Club.find(params[:id])
     @message= Message.create(content: params[:club][:message][:content], user: current_user, club: @club)
-    # @club.messages << @message
-    # current_user.messages << @message
-    # respond_to do |f|
-    #   f.js {render json: {content: @message.content, user: current_user, date: @message.post_time}}
-    # end
     ActionCable.server.broadcast 'messages',
        message: @message.content,
        user: @message.user.name,
        date: @message.post_time
        head :ok
-     #redirect_to club_path(@club)
   end
 
   def club_member?(club)
@@ -63,6 +56,10 @@ class ClubsController < ApplicationController
 private
   def club_params
     params.require(:club).permit(:name, :start_date, :end_date, :book_id)
+  end
+
+  def set_club
+    @club=Club.find(params[:id])
   end
 
 
