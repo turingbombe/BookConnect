@@ -1,12 +1,25 @@
 FactoryGirl.define do
   factory :club do
-    name "John"
-    status  "Doe"
-    start_date 
+
+    name {Faker::Name.name}
+    trait :active do
+      status{'active'}
+    end
+
+    trait :upcoming do
+      status{'upcoming'}
+    end
+
+    trait :archived do
+      status{'archived'}
+    end
+
+    trait :closed do
+      status{'closed'}
+    end
+
+
+
   end
-
-
-  "status"
-  t.date     "start_date"
-  t.date     "end_date"
-  t.integer  "book_id"
+end
+>>>>>>> master
