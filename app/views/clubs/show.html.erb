@@ -11,7 +11,7 @@ book club!</p>
   </div>
 </div>
 
-<% if logged_in? && @club.users.include?(current_user)%>
+<% if club_member?(@club)%>
 <div class="messages">
 <h2>Messages:</h2>
   <div id="message_board" style ="height:200px;width:600px;overflow:auto;background-color:white;color:black;
@@ -34,13 +34,5 @@ book club!</p>
 
 <% if logged_in? %>
   <h2> Not enough members? Invite a friend!</h2>
-  <%= form_tag(invitations_path, method: 'POST') do %>
-   <%= hidden_field_tag "invitations[club_id]", @club.id%>
-   <%= hidden_field_tag "invitations[user_id]", current_user.id %>
-  <%= label_tag :name %>
-  <%= text_field_tag "invitations[name]" %>
-  <%= label_tag :email %>
-  <%= text_field_tag "invitations[email]" %>
-  <%= submit_tag "Invite Friends" %>
-  <% end %>
+ <%= render partial: 'invitation_email' locals: {name: name, email: email, club: @club} %>
 <% end %>
