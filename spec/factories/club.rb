@@ -18,7 +18,8 @@ FactoryGirl.define do
       status{'closed'}
     end
 
-    
+
 
   end
 end
+>>>>>>> master

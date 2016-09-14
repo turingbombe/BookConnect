@@ -11,15 +11,6 @@ def new
 end
 
 def create
-  binding.pry
-  @message = @club.messages.build(message_params)
-  current_user.messages<<@message
-  byebug
-  if @message.save
-      redirect_to club_path(@message.club_id)
-  else
-    render 'new'
-  end
 end
 
 

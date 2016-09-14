@@ -9,7 +9,7 @@ class Club < ApplicationRecord
   # has_many :books, through: :book_clubs
 
   accepts_nested_attributes_for :messages
-  
+
 
 
   # Club status:
@@ -29,41 +29,21 @@ class Club < ApplicationRecord
     self.all.where(status: "archived")
   end
 
-  # def club_member?
-  #   self.users.include?(current_user)
-  # end
-  def self.status_update
-  now = Date.today
-    Club.all.each do |club|
-      if club.status == 'closed' && club.end_date.past?
-        club.status = 'archived'
-        club.save
-      elsif club.status == 'upcoming' && club.start_date <= now
-        club.status = 'active'
-        club.save
-      elsif club.status == 'active' && (now - club.start_date) > 10
-        club.status = 'closed'
-        club.save
-      end
-    end
+  def club_member?(club)
+    club.users.include?(current_user)
   end
 
   def status_set
-    now = Date.today 
-    if self.end_date.past?
-      self.status = 'archived'
-      self.save
-    elsif self.start_date <= now
-      self.status = 'active'
-      self.save
-    elsif (now - self.start_date) > 10
-      self.status = 'closed'
-      self.save
-    elsif (self.start_date) > now
-      self.status = 'upcoming'
-      self.save
-    end    
+    self.set_club_status
   end
+
+
+  def self.status_update
+    Club.all.each do |club|
+      club.update_status
+    end
+  end
+
 
 
 end
