@@ -4,3 +4,4 @@ FactoryGirl.define do
     last_name  "Doe"
     admin false
   end
+  end

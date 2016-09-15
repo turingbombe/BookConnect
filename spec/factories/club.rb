@@ -22,4 +22,3 @@ FactoryGirl.define do
 
   end
 end
->>>>>>> master

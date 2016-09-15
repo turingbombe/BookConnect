@@ -33,17 +33,38 @@ class Club < ApplicationRecord
     club.users.include?(current_user)
   end
 
-  def status_set
-    self.set_club_status
+  def set_status
+      now = Date.today
+      if self.end_date.past?
+        self.status = 'archived'
+        self.save
+      elsif self.start_date <= now
+        self.status = 'active'
+        self.save
+      elsif (now - self.start_date) > 10
+        self.status = 'closed'
+        self.save
+      elsif (self.start_date) > now
+        self.status = 'upcoming'
+        self.save
+      end
   end
 
 
-  def self.status_update
+  def self.update_status
+    now = Date.today
     Club.all.each do |club|
-      club.update_status
+      if club.status == 'closed' && club.end_date.past?
+        club.status = 'archived'
+        club.save
+      elsif club.status == 'upcoming' && club.start_date <= now
+        club.status = 'active'
+        club.save
+      elsif club.status == 'active' && (now - club.start_date) > 10
+        club.status = 'closed'
+        club.save
+      end
     end
   end
-
-
 
 end
