@@ -14,7 +14,7 @@ BookConnect is a social platform for book lovers to connect virtually in an onli
 - Users can chat live with any user in the club. 
 - Users will receive an email confirmation upon signing up for BookConnect.
 - Users can also send an invitation email to friends to join their club directly from BookConnect.
-- Users(system admins) are able to run demographic reports to analyze general queries to the database (i.e., most popular books, frequency of new users, demographic reports, etc.)
+- Users(system admins) are able to run general query reports on the database (i.e., most popular books, frequency of new user sign-ups, demographic reports, etc.)
 
 
 <h3>Technical Specs: </h3>
