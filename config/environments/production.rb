@@ -26,8 +26,8 @@ Rails.application.configure do
   config.assets.compile = false
 
   # Action Cable production URI
-  config.web_socket_server_url = "wss://aqueous-crag-52137.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://aqueous-crag-52137.herokuapp.com', 'http://aqueous-crag-52137.herokuapp.com']
+  config.web_socket_server_url = "wss://book-connect.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://book-connect.herokuapp.com', 'http://book-connect.herokuapp.com']
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
