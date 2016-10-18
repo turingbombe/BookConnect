@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
 
     def invitation_email(option = {})
         #binding.pry
-        url = "https://aqueous-crag-52137.herokuapp.com/clubs/"
+        url = "https://book-connect.herokuapp.com/clubs/"
         @user = User.find(option[:user_id]).name
         @email = option[:email]
         @name = option[:name]
