@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
   resources :clubs do
   resources :messages
-  end
+end
   resources :sessions, except: [:new, :destroy]
   resources :invitations
 
