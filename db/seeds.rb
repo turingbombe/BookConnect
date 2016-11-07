@@ -27,7 +27,7 @@
   elsif (now - start) > 10
     club = Club.create(name: "#{@book.title} Book Club", status: "closed", start_date: start, end_date: finish)
   elsif start <= now
-    club = Club.create(name: "#{@book.title} Book Club", status: "open", start_date: start, end_date: finish)
+    club = Club.create(name: "#{@book.title} Book Club", status: "active", start_date: start, end_date: finish)
   end
   club.book = @book
   ##User Seeds

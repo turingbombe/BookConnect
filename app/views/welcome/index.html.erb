@@ -10,8 +10,8 @@
 
 <h3>Upcoming Book Clubs</h3>
 
-<div class = "book_card_group" class = "card-group row">
-<% @upcoming.each do |club| %>
+<div class = "book_card_group" class = "card-group row clearfix">
+  <% @upcoming.each do |club| %>
     <%=render partial: 'card_group', locals: {club: club} %>
   <% end %>
  </div>
