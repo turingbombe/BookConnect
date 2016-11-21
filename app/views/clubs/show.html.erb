@@ -20,11 +20,11 @@ book club!</p>
     <% @club.messages.each do |message| %>
       <p>On <%= message.post_time%>: <%=message.user.name%> said "<%= message.content%>"</p>
       <% end %>
-      <% end %>
-    </div>
+<% end %>
+  </div>
  </div>
 
-<%= render partial: 'messages/form', method: :post, locals: {message: @club.messages.build} %>
+<%=render partial: 'messages/form', method: :post, locals: {message: @club.messages.build} %>
 <% end %>
 
 <h2>Members:</h2>

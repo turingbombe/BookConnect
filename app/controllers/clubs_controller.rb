@@ -26,7 +26,7 @@ class ClubsController < ApplicationController
     club = Club.new(club_params)
     if club.save
       club.users << current_user
-      club.status_set
+      club.set_status
       redirect_to club_path(club)
     else
       render 'new'
