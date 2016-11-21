@@ -4,7 +4,7 @@
     <h2>New Message</h2>
       <%= form_for @club, remote: true, :html => {:'data-type' => 'json'} do |f|%>
       <%= f.fields_for @club.messages.build do |message_form|%>
-      <%= message_form.text_area :content %>
+        <%= message_form.text_area :content %>
       <%end%>
       <%=f.submit "Post Message" %>
       <%end%>

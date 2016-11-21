@@ -1,7 +1,7 @@
 require 'rails_helper'
 # require 'support/factory_girl'
 
-describe Club, type: :model do
+RSpec.describe Club, type: :model do
 
   describe "get book club status" do
     let(:active_club) {create(:club, :active)}
@@ -25,19 +25,36 @@ describe Club, type: :model do
   describe "Updates the status for all clubs" do
 
     it 'changes the status of a club from closed to archived' do
-      club = Club.create(name:"Test Club", status:'closed', start_date: (Date.today-40), end_date: (Date.today-10))
+      Club.create(name:"Test Club", status:'closed', start_date: (Date.today-40), end_date: (Date.today-10))
       expect(Club.update_status.first.status).to eq('archived')
     end
 
     it 'changes the status of a club from upcoming to active' do
-      club = Club.create(name:"Test Club", status:'upcoming', start_date: (Date.today-1), end_date: (Date.today+10))
+      Club.create(name:"Test Club", status:'upcoming', start_date: (Date.today-1), end_date: (Date.today+10))
       expect(Club.update_status.first.status).to eq('active')
     end
 
     it 'changes the satus of a club from active to closed' do
-      club = Club.create(name:"Test Club", status:'active', start_date: (Date.today-12), end_date: (Date.today+10))
+      Club.create(name:"Test Club", status:'active', start_date: (Date.today-12), end_date: (Date.today+10))
       expect(Club.update_status.first.status).to eq('closed')
     end
+  end
+
+  describe "Sets the status for a new club" do
+    it 'sets the status of an upcoming club to upcoming' do
+      club= Club.create(name: "Test Club", start_date: (Date.today+10), end_date: (Date.today+40))
+      club.set_status
+      expect(club.status).to eq('upcoming')
+    end
+  end
+
+  describe "Club has many messages" do
+      it "has many messages, and messages have content" do
+        club= Club.create(name: "Test Club", start_date: (Date.today+10), end_date: (Date.today+40))
+        message= Message.new(content: "hello")
+        club.messages<<message
+        expect(club.messages.first.content).to eq("hello")
+      end
   end
 
 
